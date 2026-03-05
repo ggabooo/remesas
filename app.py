@@ -381,7 +381,7 @@ with st.expander("Tabla — Desestacionalización"):
 # ============================================================
 # 3) TABLA COMPARATIVA FINAL + HEATMAP (error %)
 # ============================================================
-st.subheader("3) Tabla comparativa (test) — heatmap por error % (igual al notebook)")
+st.subheader("3) Tabla comparativa - heatmap por error %")
 
 THRESHOLDS = {"green": 0.05, "ygreen": 0.10, "yellow": 0.20, "orange": 0.30}
 COLORS = {
@@ -404,20 +404,24 @@ tabla = tabla[["Mes-Año", "Value", "Forecast_Original", "Forecast_MA12", "Forec
 
 forecast_cols = ["Datos_Originales", "Promedio_Movil", "Suaviz_Exp", "Desestacionalizacion"]
 
-def _color_por_error_pct(real, pred):
+def color_por_error_pct(real, pred):
     if pd.isna(pred) or pd.isna(real) or real == 0:
         return ""
+
     err = abs((pred - real) / real)
+
     if err <= THRESHOLDS["green"]:
-        return f"background-color: {COLORS['green']}"
+        color = COLORS["green"]
     elif err <= THRESHOLDS["ygreen"]:
-        return f"background-color: {COLORS['ygreen']}"
+        color = COLORS["ygreen"]
     elif err <= THRESHOLDS["yellow"]:
-        return f"background-color: {COLORS['yellow']}"
+        color = COLORS["yellow"]
     elif err <= THRESHOLDS["orange"]:
-        return f"background-color: {COLORS['orange']}"
+        color = COLORS["orange"]
     else:
-        return f"background-color: {COLORS['red']}"
+        color = COLORS["red"]
+
+    return f"background-color:{color}; color:black; font-weight:600"
 
 def _aplicar_heatmap(df_):
     styles = pd.DataFrame("", index=df_.index, columns=df_.columns)
@@ -496,4 +500,5 @@ st.plotly_chart(fig_f, use_container_width=True)
 """, language="python")
 
 st.dataframe(forecast_df[["Mes-Año", "Pronóstico"]], use_container_width=True)
+
 

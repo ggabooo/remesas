@@ -421,12 +421,13 @@ def color_por_error_pct(real, pred):
     else:
         color = COLORS["red"]
 
-    return f"background-color:{color}; color:black; font-weight:600"
+    # 🔥 legibilidad
+    return f"background-color:{color}; color:black; font-weight:700; font-size:16px; text-align:center;"
 
 def _aplicar_heatmap(df_):
     styles = pd.DataFrame("", index=df_.index, columns=df_.columns)
     for col in forecast_cols:
-        styles[col] = [_color_por_error_pct(r, p) for r, p in zip(df_["Real"], df_[col])]
+        styles[col] = [color_por_error_pct(r, p) for r, p in zip(df_["Real"], df_[col])]
     return styles
 
 styled = (
@@ -500,5 +501,6 @@ st.plotly_chart(fig_f, use_container_width=True)
 """, language="python")
 
 st.dataframe(forecast_df[["Mes-Año", "Pronóstico"]], use_container_width=True)
+
 
 

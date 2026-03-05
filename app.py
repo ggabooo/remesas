@@ -7,7 +7,7 @@ from statsmodels.tsa.holtwinters import ExponentialSmoothing
 
 st.set_page_config(
     page_title="Remesas Guatemala | Pronóstico",
-    page_icon="🦧",
+    page_icon="🦇",
     layout="wide"
 )
 
@@ -287,6 +287,7 @@ fig_f.update_layout( template="plotly_dark", plot_bgcolor="#020B16", paper_bgcol
 st.plotly_chart(fig_f, use_container_width=True)
 
 st.dataframe(forecast_df[["Mes-Año","Pronóstico"]], use_container_width=True)
+
 
 
 

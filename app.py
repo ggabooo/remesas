@@ -1,11 +1,3 @@
-# app.py — Dashboard Streamlit (idéntico al notebook del PDF)
-# Incluye:
-# - Tablas por método (Originales, PM multi-ventana 2..24, Holt-Winters, Desestacionalización)
-# - Tabla comparativa final con heatmap por error %
-# - Botón de descarga EDB.xlsx
-# - Botón/expander por gráfico para ver el código de ese gráfico
-# - Selector de ventana PM (para la visualización del gráfico), manteniendo Forecast_MA12 fijo para la tabla final (igual al notebook)
-
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -381,7 +373,7 @@ with st.expander("Tabla — Desestacionalización"):
 # ============================================================
 # 3) TABLA COMPARATIVA FINAL + HEATMAP (error %)
 # ============================================================
-st.subheader("3) Tabla comparativa - heatmap por error %")
+st.subheader("3) Tabla comparativa")
 
 THRESHOLDS = {"green": 0.05, "ygreen": 0.10, "yellow": 0.20, "orange": 0.30}
 COLORS = {
@@ -501,6 +493,7 @@ st.plotly_chart(fig_f, use_container_width=True)
 """, language="python")
 
 st.dataframe(forecast_df[["Mes-Año", "Pronóstico"]], use_container_width=True)
+
 
 
 

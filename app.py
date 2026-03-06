@@ -263,7 +263,7 @@ with col3:
 # ============================================================
 # 1) RMSE BAR CHART + CÓDIGO
 # ============================================================
-st.subheader("1) RMSE por modelo (menor es mejor)")
+st.subheader("1) RMSE por modelo")
 
 fig_rmse = go.Figure(go.Bar(x=rmse_table["Modelo"], y=rmse_table["RMSE"]))
 fig_rmse.update_layout(
@@ -296,7 +296,7 @@ st.plotly_chart(fig_rmse, use_container_width=True)
 # ============================================================
 # 2) EVALUACIÓN (REAL VS PRONÓSTICOS) + CÓDIGO
 # ============================================================
-st.subheader("2) Evaluación (abr-2024 → mar-2025): Real vs Pronósticos")
+st.subheader("2) Evaluación (abr-2024 → mar-2025)")
 
 fig = go.Figure()
 fig.add_trace(go.Scatter(x=train_test["Fecha"], y=train_test["Value"], name="Train", mode="lines"))
@@ -434,7 +434,7 @@ st.dataframe(styled, use_container_width=True)
 # ============================================================
 # 4) PRONÓSTICO 2026 (abr-2025 → mar-2026) + CÓDIGO
 # ============================================================
-st.subheader("4) Pronóstico (abr-2025 → mar-2026) con el mejor modelo")
+st.subheader("4) Pronóstico (abr-2025 → mar-2026)")
 
 H2 = 12
 
@@ -493,6 +493,7 @@ st.plotly_chart(fig_f, use_container_width=True)
 """, language="python")
 
 st.dataframe(forecast_df[["Mes-Año", "Pronóstico"]], use_container_width=True)
+
 
 
 
